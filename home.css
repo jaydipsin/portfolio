@@ -11,7 +11,12 @@
   --hover-color: #5454d4;
   --hover-transition: all 0.2s ease-in-out;
 }
-
+body{
+  overflow-x: hidden ;
+}
+.ham-burgar-icon{
+  display: none;
+}
 /* * common styling */
 .m-t-b-4rem{
   margin: 4rem 0;
@@ -386,6 +391,7 @@ footer{
 }
 .footer-section-1 p{
   display: flex;
+  margin: 20px 0;
   justify-content: center;
   align-items: center;
   gap: 10px;
@@ -410,24 +416,32 @@ footer{
 /* * footer section ends */
 
 /* * media query */
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 599px){
   header{
-    margin-top: 1rem;
     height: 50px;
   }
+  header .container{
+    padding:10px 0;
+  }
   .ham-burgar-icon-ele{
-    top: -11px;
+    top: -14px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     position: absolute;
-    right: -20px;
-    width: 500px;
-    height: 500px;
-    background-color: black;
+    width: 100vw ;
+    backdrop-filter: blur(10px);
+    background-color: rgb(0 0 0 / 41%);
+  }
+  .fa-solid{
+    cursor: pointer;
+    font-size: 20px;
   }
   .ham-burgar-icon{
-    min-height: 30px;
-    display: inline-block;
-    min-width: 30px;
-    background-color: #5454d4;
+    display: flex;
+    min-height: 20px;
+    min-width: 20px;
   }
   /* * common styling */
   .fs-60{
@@ -466,6 +480,7 @@ footer{
   .hero-img .img-container{
     display: flex;
     justify-content: center;
+    align-items: center;
   }
   .img-container .fram-1,.img-container .fram-2{
     position: static;
@@ -503,4 +518,69 @@ footer{
   }
   /* * footer section-1 */
 
+}
+
+@media only screen and (min-width: 600px) and (max-width: 959px)  {
+
+  .contact-us .btn{
+    width: 80%;
+  }
+
+  .home-page .container{
+    margin: 1.5rem 0 0 0;
+    flex-direction: column;
+  }
+  
+  .fram-1{
+    display: none;
+  }
+  .hero-info,.hero-img{
+    width: 100%;
+  }
+  /* .hero-img .img-container{
+    display: flex;
+    justify-content: center;
+  } */
+   .bacground-2{
+    right: 0;
+   }
+  .img-container .fram-2{
+    top: 50%;
+    left: 50%;
+    rotate: 0deg;
+    border-radius: 50% !important;
+    transform: translate(-50%, -50%);
+  }
+  .footer-section-1 :nth-child(){
+    margin: 10px 0;
+  }
+
+  .floating-icon-1,.floating-icon-2,.floating-icon-3,.floating-icon-4{
+    display: none;
+  }
+
+}
+@media only screen and (min-width: 960px) and (max-width: 1200px){
+  .floating-icon-1{
+    top: 0rem;
+    right: 9rem;
+  }
+  .floating-icon-2
+  {
+    top: 4rem;
+    left: 21rem;
+  }
+  .floating-icon-3
+  {
+    right: -2rem;
+  }
+  .floating-icon-4{
+    top: 23rem;
+    left: 26rem;
+  }
+}
+@media only screen and (min-width:1900px){
+  .container{
+    max-width: 1600px;
+  }
 }

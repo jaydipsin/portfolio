@@ -1,21 +1,52 @@
 document.addEventListener("DOMContentLoaded", () => {
-//  * header scroll
-window.addEventListener("scroll",()=>{
-  let header = document.querySelector("header");
-  header.classList.toggle("sticky", window.scrollY > 0)
-});
-//  * header scroll ends
+  //  * header scroll
+  window.addEventListener("scroll", () => {
+    let header = document.querySelector("header");
+    header.classList.toggle("sticky", window.scrollY > 0);
+  });
+  //  * header scroll ends
   // * hamburgar icon
-  (function hamBurgarDropDown() {
+  let isManu = false;
     const hamBurgarIcon = document.querySelector(".ham-burgar-icon");
     hamBurgarIcon.addEventListener("click", () => {
-      const creatNewEl = document.createElement("div");
-      creatNewEl.classList.add("ham-burgar-icon-ele");
-
-      console.log("hamBurgarDropDown btn was clickde");
+      if (!isManu) {
+        const creatNewEl = document.createElement("div");
+        creatNewEl.classList.add("ham-burgar-icon-ele");
+  
+        creatNewEl.innerHTML = `
+        <i class="fa-solid fa-xmark"></i>
+        <a href="#">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Our Project</a>
+        <a href="#">About Us</a>
+        `;
+        let Tl = gsap.timeline();
+        const links = creatNewEl.querySelectorAll("a");
+        const icon = creatNewEl.querySelector("i");
+        Tl.to(creatNewEl, {
+          opacity:1,
+          right: -16,
+          duration: 0.1,
+        });
+        Tl.from(links, {
+          x:50,
+          opacity:0,
+          stagger:0.1,
+        });
+        Tl.from(icon,{
+          opacity:0,
+        });
+        icon.addEventListener("click",()=>{
+          Tl.reverse().then(()=>{
+            creatNewEl.remove();
+            isManu = false;
+          })
+        })
       hamBurgarIcon.append(creatNewEl);
+      }
+      isManu = true;
     });
-  })();
+
   // * gsap starts
   let header_tl = gsap.timeline();
   header_tl.from(".logo,.category,.contact-us", {
@@ -69,8 +100,6 @@ window.addEventListener("scroll",()=>{
     loop: true,
     loopCount: Infinity,
     backDelay: 1500,
-
   });
   AOS.init();
-
 });
